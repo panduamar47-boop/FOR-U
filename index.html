@@ -14,6 +14,7 @@
         text-align: center;
     }
 </style>
+
 <style>
     #card {
         width: 85%;
@@ -40,7 +41,7 @@
 
     @keyframes pulse {
         0% {transform:scale(1);}
-        50% {transform:scale(1.1);}
+        50% {transform:scale(1.2);}
         100% {transform:scale(1);}
     }
 </style>
@@ -52,7 +53,7 @@
     <source src="birthdaygirl.mp3" type="audio/mp3">
 </audio>
 
-<!-- MUSIK AKHIR -->
+<!-- MUSIK AKHIR (mulai detik 50) -->
 <audio id="music2">
     <source src="filmfavorit.mp3" type="audio/mp3">
 </audio>
@@ -77,14 +78,14 @@ const messages = [
     "hiii balqis naura rahma dewi!! 💕",
     "eh kepanjangan ya… gini aja…",
     "hiii sayangkuu 💗",
-    "Happy level up day yaa sengg birthday 🎉",
+    "Happy level up day yaa sengg 🎉",
     "Selamat bertambah usia yaa adikk 🎂",
     "Selamat menjadi tambah tua 🤭",
     "Semoga di usia km yang sudah bertambah, kebahagiaannya juga ikut bertambah 🫶🏻",
     "maaf yaa cuma bisa ngucapin lewat giniii...",
     "belum bisa langsung nyamperin kamu 😔",
     "semoga semua yang kamu impikan bisa tercapai yaa ✨",
-    "aku tau kadang kamu capee atau sedih...",
+    "aku tau kadang kamu ngerasa capee atau sedih...",
     "tapi aku tau kamu itu kuat, kaya wonder woman ❤",
     "kamu pasti bisa lewatinn semua badai itu...",
     "aku bakal selalu ada buat kamu yaa sayangg 🫰🏻",
@@ -101,18 +102,17 @@ const music1 = document.getElementById("music1");
 const music2 = document.getElementById("music2");
 const bgStyle = document.getElementById("bg-style");
 
-heart.onclick = function() {
+heart.onclick = function () {
 
-    // Musik dimulai hanya sekali (wajib karena aturan browser)
+    // Musik dimulai hanya sekali
     if (step === 0) {
         music1.play();
     }
 
-    // Ganti teks
     if (step < messages.length) {
         text.innerHTML = messages[step];
 
-        // Ganti background sesuai urutan
+        // ganti background
         let bgIndex = step % backgrounds.length;
         bgStyle.innerHTML = `
             body {
@@ -127,9 +127,10 @@ heart.onclick = function() {
 
         step++;
 
-        // Ganti musik di akhir
+        // pergantian musik ketika sampai pesan terakhir
         if (step === messages.length) {
             music1.pause();
+            music2.currentTime = 50;   // mulai dari detik 50
             music2.play();
         }
     }
