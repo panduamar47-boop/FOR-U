@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday My Dear</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style id="bg-style">
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('zootopia1.jpg') center/cover no-repeat fixed;
+        font-family: "Comic Sans MS", sans-serif;
+        color: white;
+        text-align: center;
+    }
+</style>
+<style>
+    #card {
+        width: 85%;
+        max-width: 450px;
+        background: rgba(0,0,0,0.5);
+        padding: 25px;
+        margin: 70px auto;
+        border-radius: 20px;
+        backdrop-filter: blur(8px);
+        animation: fade 0.6s ease;
+    }
+
+    @keyframes fade {
+        from {opacity:0; transform:scale(0.9);}
+        to {opacity:1; transform:scale(1);}
+    }
+
+    #heart {
+        font-size: 45px;
+        cursor: pointer;
+        animation: pulse 1.4s infinite;
+        margin-top: 15px;
+    }
+
+    @keyframes pulse {
+        0% {transform:scale(1);}
+        50% {transform:scale(1.1);}
+        100% {transform:scale(1);}
+    }
+</style>
+</head>
+<body>
+
+<!-- MUSIK AWAL -->
+<audio id="music1">
+    <source src="birthdaygirl.mp3" type="audio/mp3">
+</audio>
+
+<!-- MUSIK AKHIR -->
+<audio id="music2">
+    <source src="filmfavorit.mp3" type="audio/mp3">
+</audio>
+
+<div id="card">
+    <h2 id="text">Klik LOVE untuk mulai 💗</h2>
+    <div id="heart">💗</div>
+</div>
+
+<script>
+let step = 0;
+
+// 4 gambar zootopia
+const backgrounds = [
+    "zootopia1.jpg",
+    "zootopia2.jpg",
+    "zootopia3.jpg",
+    "zootopia4.jpg"
+];
+
+const messages = [
+    "hiii balqis naura rahma dewi!! 💕",
+    "eh kepanjangan ya… gini aja…",
+    "hiii sayangkuu 💗",
+    "Happy level up day yaa sengg birthday 🎉",
+    "Selamat bertambah usia yaa adikk 🎂",
+    "Selamat menjadi tambah tua 🤭",
+    "Semoga di usia km yang sudah bertambah, kebahagiaannya juga ikut bertambah 🫶🏻",
+    "maaf yaa cuma bisa ngucapin lewat giniii...",
+    "belum bisa langsung nyamperin kamu 😔",
+    "semoga semua yang kamu impikan bisa tercapai yaa ✨",
+    "aku tau kadang kamu capee atau sedih...",
+    "tapi aku tau kamu itu kuat, kaya wonder woman ❤",
+    "kamu pasti bisa lewatinn semua badai itu...",
+    "aku bakal selalu ada buat kamu yaa sayangg 🫰🏻",
+    "kalo capee istirahat dulu yaaa",
+    "kalo mau cerita, cerita ke aku ya… gapapa kok ❤️",
+    "semangaaat terus yaa manisss 🫶🏻",
+    "JANGAN LUPAAA MAMMM... NO NO TELAT² MAM NYA 🤭",
+    "Terakhir… ada lagu spesial buat kamu 🎶"
+];
+
+const text = document.getElementById("text");
+const heart = document.getElementById("heart");
+const music1 = document.getElementById("music1");
+const music2 = document.getElementById("music2");
+const bgStyle = document.getElementById("bg-style");
+
+heart.onclick = function() {
+
+    // Musik dimulai hanya sekali (wajib karena aturan browser)
+    if (step === 0) {
+        music1.play();
+    }
+
+    // Ganti teks
+    if (step < messages.length) {
+        text.innerHTML = messages[step];
+
+        // Ganti background sesuai urutan
+        let bgIndex = step % backgrounds.length;
+        bgStyle.innerHTML = `
+            body {
+                margin:0;
+                padding:0;
+                background: url('${backgrounds[bgIndex]}') center/cover no-repeat fixed;
+                font-family: "Comic Sans MS", sans-serif;
+                color:white;
+                text-align:center;
+            }
+        `;
+
+        step++;
+
+        // Ganti musik di akhir
+        if (step === messages.length) {
+            music1.pause();
+            music2.play();
+        }
+    }
+};
+</script>
+
+</body>
+</html>
